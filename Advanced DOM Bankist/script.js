@@ -112,3 +112,76 @@ btnScrollTo.addEventListener('click', e => {
   //Modern Style
   section1.scrollIntoView({ behavior: 'smooth' });
 });
+
+//Random color rgba(255,255,255)
+// const randomInt = (min, max) => {
+//   Math.floor(Math.random() * (max - min + 1) + min);
+// };
+
+// const randomColor = () => {
+//   `rgb(${randomInt(0, 255)},${randomInt(0, 255)},${randomInt(0, 255)})`;
+// };
+
+// document.querySelector('.nav__link').addEventListener('click', e => {
+//   this.style.backgroundColor = randomColor();
+
+// });
+
+// const navLinks = document.querySelector('.nav__links');
+
+// const navLinksFunc = function (e) {
+//   navLinks.style.backgroundColor = randomColor();
+// };
+// navLinks.addEventListener('click', navLinksFunc);
+
+// document.querySelector('.nav').addEventListener('click', e => {});
+
+//Page Navigation
+// document.querySelectorAll('.nav__link').forEach(curEl => {
+//   curEl.addEventListener('click', e => {
+//     e.preventDefault();
+//     const id = curEl.getAttribute('href');
+//     document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+//   });
+// });
+
+//Page Delegation Navigation to a sepcific section onclicking the nav links
+// 1. Add Event Listener to common parent element
+// 2. Determine what element originated the element
+
+document.querySelector('.nav__links').addEventListener('click', e => {
+  e.preventDefault();
+  //Checking the target element
+  // console.log(e.target);
+
+  //Checking the targeted Matching
+  if (e.target.classList.contains('nav__link')) {
+    const id = e.target.getAttribute('href');
+    document.querySelector(id).scrollIntoView({ behavior: 'smooth' });
+  }
+});
+
+//DOM Traversing
+//Going downwards : Child
+const h1 = document.querySelector('h1');
+h1.querySelectorAll('.highlight');
+h1.firstElementChild.style.color = 'red';
+h1.lastElementChild.style.color = 'orangered';
+
+//Going up: Parents
+console.log(h1.parentNode);
+console.log(h1.parentElement);
+
+// If needs the parent only to attach the closest element
+h1.closest('.header').style.background = 'var(--gradient-secondary)';
+
+//Going Sideways: Siblings
+console.log(h1.previousElementSibling);
+console.log(h1.nextElementSibling);
+console.log(h1.previousSibling);
+//Working with all the siblings
+[...h1.parentElement.children].forEach(cur => {
+  if (cur !== h1) {
+    cur.style.background = 'blue';
+  }
+});
