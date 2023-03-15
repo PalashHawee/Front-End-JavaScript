@@ -185,3 +185,32 @@ console.log(h1.previousSibling);
     cur.style.background = 'blue';
   }
 });
+
+//Tabs Component (Button)
+const tabs = document.querySelectorAll('.operations__tab');
+const tabsContainer = document.querySelector('.operations__tab-container');
+const tabsContent = document.querySelectorAll('.operations__content');
+
+//using delegation method (parentNode clossest)
+tabsContainer.addEventListener('click', e => {
+  const clicked = e.target.closest('.operations__tab');
+  console.log(clicked);
+
+  //Guard Clause for preventing click
+  //outside the parent class
+  if (!clicked) return;
+
+  //Removing Active class from tabs
+  tabs.forEach(i => i.classList.remove('operations__tab--active'));
+
+  //Adding active class again for clicking active show
+  clicked.classList.add('operations__tab--active');
+
+  //Removing active conetent
+  tabsContent.forEach(c => c.classList.remove('operations__content--active'));
+
+  //Activate Content Area
+  document
+    .querySelector(`.operations__content--${clicked.dataset.tab}`)
+    .classList.add('operations__content--active');
+});
