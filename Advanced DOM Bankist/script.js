@@ -173,7 +173,7 @@ console.log(h1.parentNode);
 console.log(h1.parentElement);
 
 // If needs the parent only to attach the closest element
-h1.closest('.header').style.background = 'var(--gradient-secondary)';
+// h1.closest('.header').style.background = 'var(--gradient-secondary)';
 
 //Going Sideways: Siblings
 console.log(h1.previousElementSibling);
@@ -182,7 +182,7 @@ console.log(h1.previousSibling);
 //Working with all the siblings
 [...h1.parentElement.children].forEach(cur => {
   if (cur !== h1) {
-    cur.style.background = 'blue';
+    cur.style.background = 'orangered';
   }
 });
 
@@ -214,3 +214,23 @@ tabsContainer.addEventListener('click', e => {
     .querySelector(`.operations__content--${clicked.dataset.tab}`)
     .classList.add('operations__content--active');
 });
+
+//Menu fade Animation
+const nav = document.querySelector('.nav');
+
+const handleHover = function (e) {
+  if (e.target.classList.contains('nav__link')) {
+    const link = e.target;
+    const siblings = link.closest('.nav').querySelectorAll('.nav__link');
+    const logo = link.closest('.nav').querySelector('img');
+
+    siblings.forEach(el => {
+      if (el !== link) el.style.opacity = this;
+    });
+    logo.style.opacity = this;
+  }
+};
+
+// Passing "argument" into handler
+nav.addEventListener('mouseover', handleHover.bind(0.5));
+nav.addEventListener('mouseout', handleHover.bind(1));
