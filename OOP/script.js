@@ -15,3 +15,13 @@ const Person = function (firstName, birthYear) {
 //Instances of Person
 const palash = new Person('Paul', 1992);
 console.log(palash);
+
+//Protypes // it inherits properties from the object
+Person.prototype.calcage = function () {
+  console.log(2037 - this.birthYear);
+};
+palash.calcage();
+
+//Adding properties to object
+Person.prototype.species = 'Homo Sapiens';
+console.log(palash.species);
